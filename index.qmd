@@ -1,0 +1,438 @@
+---
+title: LLMs -- from Theory to Reality and Beyond
+title-slide-attributes:
+    data-background-image: "img/catalyst-on-the-beach.jpg"
+    data-background-opacity: "1"
+
+execute: 
+  cache: true
+  echo: true
+
+format: 
+    revealjs:
+        theme: slides.scss
+        slide-number: true
+        logo: img/logo.png
+        transition: slide 
+        transition-speed: slow
+        small: true
+        code-overflow: wrap
+        self-contained: true # make this true if you want the html file to be self contained
+        width: 1366
+        height: 768     
+---
+
+## About me - Mac Misiura
+
+::::{.columns} 
+::: {.column width=50%}
+
+::: {.r-stack}
+![](img/profile-pic.jpeg){width="800" height="625"}
+
+![](img/profile-pic-runway-anime.jpg){.fragment width="800" height="625"}
+
+![](img/profile-pic-text-inversion-mona-lisa.png){.fragment width="800" height="625"}
+
+![](img/profile-pic-text-inversion-teddy.png){.fragment width="800" height="625"}
+:::
+:::
+
+::: {.column width=50%}
+
+- Obtained a PhD in Applied Mathematics and Statistics from Newcastle University 
+- Joined [the National Innovation Centre for Data](https://www.nicd.org.uk/) as a Data Scientist in 2021
+- Particularly interested in: 
+    - __Generative AI__, focussing on (open source) Large Language Models -- check out my recent [blog post](https://nicd.org.uk/knowledge-hub/an-introduction-to-the-open-source-large-language-models)
+    - __AI Assurance__
+- Anticipates becoming a __prompt engineer__ in the near future 😆
+:::
+::::
+
+ <p class="footnote">
+_images generated using [textual-inversion fine-tuning for Stable Diffusion](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/sd_textual_inversion_training.ipynb#scrollTo=tAZq3vFDcFiT)_ | model with a learnt concept of `Me` is available on [Hugging Face](https://huggingface.co/sd-concepts-library/mac-mac)_<p>
+
+## About National Innovation Centre for Data
+
+![](img/nicd-team.jpg){fig-align="center" height=450}
+
+The National Innovation Centre for Data runs projects with organisations to help them acquire new skills and innovate through data
+
+## Collaborators
+
+![](img/collaborators-1.png){fig-align="center" height=650}
+
+## Collaborators
+
+![](img/collaborators-2.png){fig-align="center" height=650}
+
+# Theory {background-image="img/a-pile-of-books.jpg"}
+
+## Decoding the lexicon
+
+![](img/confused-person.jpg){fig-align="center" height=475}
+
+Terms such as __Artificial Intelligence__, __Machine Learning__ and __Deep Learning__ are often loosely defined and even more loosely used
+
+ <p class="footnote">
+_image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: `a photorealistic image of a person looking rather confused`_<p>
+
+## Lexicon hierarchy
+
+![](img/babushka-doll-summary.png){fig-align="center" height=600}
+
+ <p class="footnote">
+_image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: (1) `a single matryoshka doll`_<p>
+
+## What is Artificial Intelligence ? {.smaller}
+
+::: {.fragment .fade-in-then-semi-out .shrink}
+One of the earliest definitions of __AI__ could be traced back to [John McCarthy](https://hai.stanford.edu/sites/default/files/2020-09/AI-Definitions-HAI.pdf):
+
+> the science and engineering of making intelligent machines
+:::
+
+::: {.fragment .fade-in-then-semi-out .shrink}
+[the European Commission](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52021PC0206) is currently defining __AI__ as:
+
+> a machine-based system that is designed to operate with varying levels of autonomy and that can, for explicit or implicit objectives, generate output such as predictions, recommendations, or decisions influencing physical or virtual environments
+:::
+
+::: {.fragment .fade-in-then-semi-out .shrink}
+[Google](https://cloud.google.com/learn/what-is-artificial-intelligence) defines __AI__ as: 
+
+> a field of science concerned with building computers and machines that can reason, learn, and act in such a way that would normally require human intelligence or that involves data whose scale exceeds what humans can analyze 
+:::
+
+::: {.fragment .fade-up}
+[Stuart J. Russell](https://www.mckinsey.com/capabilities/quantumblack/our-insights/why-we-need-to-rethink-the-purpose-of-ai-a-conversation-with-stuart-russell) defines __AI__ as:
+
+> building machines that do the right thing, that act in ways that can be expected to achieve their objectives
+:::
+
+## What is Machine Learning ? 
+
+![](img/robot-graduating.jpeg){fig-align="center" height=250}
+
+> [Arthur L. Samuel](https://www.semanticscholar.org/paper/Some-Studies-in-Machine-Learning-Using-the-Game-of-Samuel/e9e6bb5f2a04ae30d8ecc9287f8b702eedd7b772?p2df): __ML__ is the field of study that gives computers the ability to learn without being explicitly programmed
+
+> [Tom M. Mitchell](https://sebastianraschka.com/pdf/lecture-notes/stat479fs18/01_ml-overview_slides.pdf): a computer program is said to learn from experience $E$ with respect to some class of tasks $T$ and performance measure $P$, if its performance at tasks in $T$, as measured by $P$, improves with experience $E$ 
+
+<p class="footnote">
+_image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: `a robot during their graduation ceremony looking happy`_<p>
+
+## Machine Learning: an example
+
+![](img/sentiment-analysis.jpeg){fig-align="center" height=350}
+
+- __Task, T__: sentiment analysis of social media posts
+- __Training, E__: social media posts along with their corresponding sentiment labels
+- __Performance Measure, P__: accuracy of correctly classifying the sentiment of social media posts, as judged by comparing the predicted labels with human-labeled sentiment
+
+<p class="footnote">
+_image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: `a dashboard with three emojis: angry, neutral, happy`_<p>
+
+## What is Deep Learning ?
+
+![](img/ask-chat-gpt.gif){fig-align="center" height=450}
+
+> [Yann LeCun](https://www.facebook.com/722677142/posts/10156463919392143/): __DL__ is constructing networks of parameterized functional modules & training them from examples using gradient-based optimization
+
+## A tale of two data science models
+
+::::{.columns}
+
+::: {.column width=50%}
+
+![](img/disciriminative.png){fig-align="center" height=300}
+
+__Discriminative models__:
+
+- approximates the conditional probability $p(Y \mid X )$
+- learns decision boundary
+- cannot be used to generate new data
+
+:::
+
+::: {.column width=50%}
+
+![](img/generative.png){fig-align="center" height=300}
+
+__Generative models__:
+
+- approximates the joint probability $p(X, Y) = p(X \mid Y) p(Y) = p(Y \mid X) p(X)$
+- learns probability distributions of the data
+- can be used to generate new data
+
+:::
+::::
+
+## What is Generative AI ?
+
+[Google](https://www.cloudskillsboost.google/course_templates/536?utm_source=youtube&utm_medium=video&utm_campaign=Pulley-GenAI-23) has a pragmatic approach of deciding if a system is __(GenAI)__ or not:
+
+![](img/in-out-ml.png){fig-align="center" height=280}
+
+::::{.columns}
+::: {.column width=50%}
+IS NOT __GenAI__ if output is i.e.
+
+- a number
+- a label
+- a probability
+:::
+
+::: {.column width=50%}
+IS __GenAI__ if output is i.e.
+
+- a natural / programming language
+- an image / a video
+- an audio
+
+:::
+::::
+
+## What about Foundation Models ?
+
+![](img/foundation-models.png){fig-align="center" height=350}
+
+- [Foundation Models](https://arxiv.org/pdf/2108.07258.pdf) describes a paradigm shift in the AI research __from__ <span style="color:green;">developing task-specific models trained on narrow data</span> __to__ <span style="color:red;">developing multi-purpose models trained on broad data</span> 
+
+- __Large language models__ (LLMs) could be viewed as a subset of __Foundation Models__ that deal with natural language processing (NLP) tasks such as text generation, translation, summarization, etc.
+
+## GenAI model timeline and key breakthroughs
+
+![](img/gen-ai-timeline.jpeg){fig-align="center" height=500}
+
+While __GenAI__ models have been around for a while, their recent success could be attributed to the __three key breakthroughs__ 
+
+<p class="footnote">
+_picture taken from [David Foster](https://www.linkedin.com/feed/update/urn:li:activity:7044233450295316480/)_<p>
+
+## Breakthrough 1: self-supervised learning
+
+![](img/denosing-auto-enc.png){fig-align="center" height=450}
+
+- Originally conceived in the [1980s](https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/), revived in [2008 by researchers at the University of Montreal](https://www.cs.toronto.edu/~larocheh/publications/icml-2008-denoising-autoencoders.pdf) and popularised by the [BERT paper](https://arxiv.org/abs/1810.04805) in 2018
+- Aims to reconstruct the input or predict missing parts of the input
+
+## Breakthrough 2: finding promising architectures 
+
+::::{.columns}
+
+::: {.column width=35%}
+![](img/transformer.png){fig-align="center" height=600}
+:::
+
+::: {.column width=65%}
+__Transformers__ are particularly successful due to:
+
+- __attention__: captures contextual relationships between words, allowing to understand the importance of each word in the context of the entire input
+- __positional encodings__: retains information about the order of words in the input sequence, enabling effective handling of sequential information
+- __parallel computation__: can process the entire input sequence simultaneously, making them computationally efficient and enabling faster training and inference unlike sequential nets (e.g. RNNs)
+:::
+
+::::
+
+<p class="footnote">
+_figure taken from [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)_<p>
+
+## Breakthrough 3: scaling laws 
+
+![](img/scaling-laws.png){fig-align="center" height=275}
+
+In 2020, [J. Kaplan and colleagues](https://arxiv.org/pdf/2001.08361.pdf) demonstrated that the performance of LLMs appears to improve with scaling:
+
+- __compute__
+- __data__
+- __model size__
+
+<p class="footnote">_figure taken from [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf/)_<p>
+
+## Breakthrough 3: scaling laws -- model size
+
+![](img/llm-sizes.jpeg){fig-align="center" height=600}
+
+<p class="footnote">_figure taken from [ChatGPT, GenerativeAI and LLMs Timeline](https://github.com/hollobit/GenAI_LLM_timeline)_<p>
+
+## Breakthrough 3: scaling laws -- data size
+
+![](img/token_sizes.png){fig-align="center" height=500}
+
+<p class="footnote">_figure taken from [BabyLM Challenge](https://babylm.github.io/)_<p>
+
+## Emergent abilities in LLMs 
+
+![](img/emergent-abilities.png){fig-align="center" height=405}
+
+- Breakthroughs 1-3 have had a notable impact on the performance of (generative) LLMs which are now state-of-the-art for most benchmark NLP tasks 
+
+- Moreover, 2022, [J. Wei and colleagues](https://arxiv.org/pdf/2206.07682.pdf) observed __emergent abilities__ for many additional tasks 
+
+<p class="footnote">_figure taken from [Emergent Abilities of Large Language Models](https://arxiv.org/pdf/2206.07682.pdf)_<p>
+
+## Emergent abilities in LLMs
+
+![](img/tree-of-skills.gif){height=550}
+
+<p class="footnote">_animation taken from [Pathways Language Model (PaLM): Scaling to 540 Billion Parameters for Breakthrough Performance](https://ai.googleblog.com/2022/04/pathways-language-model-palm-scaling-to.html)_<p>
+
+## Emergent abilities in LLMs
+
+![](img/emoji-movie){fig-align="center" height=525}
+
+😲 Some LLMs appear to be capable of identifying movies from emojis 😲
+
+<p class="footnote">_figure taken from [Beyond the Imitation Game benchmark](https://arxiv.org/pdf/2206.04615.pdf)_<p>
+
+## From LLMs to assistants
+
+![](img/gpt-3-completion.png){fig-align="center" height=350}
+
+- Not all LLMs are great assistants. 
+- To be a good assistant, LLMs should:
+
+    - __respond to human instructions__
+    - __perform complex reasoning__
+    - __generalise to unseen instructions__
+
+
+## From GPT-3 to ChatGPT
+
+![](img/gpt3-evolution.png){fig-align="center" height=475}
+
+The evolution of GPT-3 into ChatGPT is a great example of how the above strategies can be used to create models that excel at __assisting users__ 
+
+<p class="footnote">
+_figure taken from [Tracing Emergent Abilities of Language Models to their Sources](https://yaofu.notion.site/How-does-GPT-Obtain-its-Ability-Tracing-Emergent-Abilities-of-Language-Models-to-their-Sources-b9a57ac0fcf74f30a1ab9e3e36fa1dc1)_<p>
+
+# Reality {background-image="img/business-cat-wide.jpg"}
+
+## GenAI current application landscape 
+
+![](img/gen-ai-landscape.webp){fig-align="center" height=600}
+
+<p class="footnote">
+_figure taken from [Generative AI: A Creative New World](https://www.sequoiacap.com/article/generative-ai-a-creative-new-world/)_<p>
+
+## GenAI value chain
+
+[McKinsey & Company](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/what-every-ceo-should-know-about-generative-ai) describes an emergence of a following __value chain__:
+
+![](img/gen-ai-value-chain.png){fig-align="center" height=550}
+
+<p class="footnote">
+_figure taken from [What every CEO should know about Generative AI](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/what-every-ceo-should-know-about-generative-ai)_<p>
+
+## Leveraging GenAI in your organisation
+
+:::: columns
+
+::: {.column width=40%}
+![](img/work-construction.jpg){fig-align="center" height=600}
+:::
+
+::: {.column width=60%}
+Generally, there are five key __technical pathways__ in which __GenAI__ could be leveraged in most organisations:
+
+1. train a model from scratch 
+2. adapt a model in-house
+3. build software layers on an open-source model API
+4. build software layers on a closed-source model API
+5. use a software-as-a-service (SaaS) tool
+:::
+::::
+
+<p class="footnote">
+_image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: `work construction` and extended with Runway's [Expand Image](https://runwayml.com/ai-magic-tools/infinite-image/)_<p>
+
+## Leveraging GenAI in your organisation
+
+Before you start, the following [key questions](https://huyenchip.com/2023/06/07/generative-ai-strategy.html) should be considered: 
+
+- __If I don’t do anything__: 
+
+    - can competitors with GenAI make me obsolete ?
+    - will I miss out on opportunities to e.g. boost revenue ?
+
+- __If I do something__: 
+
+    - what are the risks ?
+    - what are the costs ? 
+    - what are the benefits ?
+
+## Using GenAI responsibly {.smaller}
+
+:::: columns
+
+::: {.column width=40%}
+![](img/forest-path.jpg){fig-align="center" height=600}
+:::
+
+::: {.column width=60%}
+
+There are important aspects to consider when using __GenAI__:
+
+- __trustworthiness__ -- is a system:
+
+    - fair and impartial ?
+    - robust and reliable ?
+    - explainable ? 
+    - secure ?
+    - safe ?
+    - private ?
+    - accountable ?
+    - responsible ?
+
+- __legal__:
+
+    - are there any intellectual property / regulatory implications ?
+
+- __organisational impact__:
+
+    - how will it impact the people ?
+
+- __environmental impact__:
+
+    - it is consistent with the wider sustainability goals ?
+:::
+::::
+
+<p class="footnote">
+_image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: `a forest path` and extended with Runway's [Expand Image](https://runwayml.com/ai-magic-tools/infinite-image/)_ <p>
+
+# Beyond {background-image="img/future-kitten-wide.jpg"}
+
+## What's next ?
+
+:::: columns
+::: {.column width=33.3%}
+
+![](img/robot-web-browsing.jpg){fig-align="center" height=275}
+
+__1. LLMs to use tools__: 
+
+- will LLMs become the primary interface to computing infrastructure and the web ?
+:::
+
+::: {.column width=33.3%}
+
+![](img/multimodal.gif){fig-align="center" height=275}
+
+__2. Multimodality__:
+
+- will training on truly multimodal data further enrich GenAI models ?
+:::
+
+::: {.column width=33.3%}
+
+![](img/monopoly-board.jpg){fig-align="center" height=275}
+
+__3. Monopoly__: 
+
+- how do we safeguard against monopoly creation in the GenAI space ?
+:::
+::::
+
+<p class="footnote">
+LHS image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: `a robot browsing the web` | _figure taken from [ImageBind: Holistic AI learning across six modalities](https://ai.facebook.com/blog/imagebind-six-modalities-binding-ai/) | RHS image generated using [Stable Diffusion v2](https://huggingface.co/stabilityai/stable-diffusion-2) with a prompt: `a photorealistic monopoly board`_<p>

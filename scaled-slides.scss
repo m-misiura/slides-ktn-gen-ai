@@ -1,0 +1,126 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+
+/*-- scss:defaults --*/
+
+
+
+$font-family-sans-serif: 'derailed', sans-serif;
+$presentation-heading-color: #4FE18F;
+$fontcolor: #002D30;
+$presentation-title-slide-text-align: "left";
+$code-block-font-size: 0.6em;
+$code-color: #5f5f5f;
+$presentation-h2-font-size: 1.4em;
+$presentation-font-size: .6em;
+
+/*-- scss:rules --*/
+
+details>summary {
+    font-size: 0.75em;
+}
+
+// These sizes are appropriate for NICD secondary logo landscape
+.reveal .slide-logo {
+    height: 10vw;
+    width: 30vw;
+    max-width: unset;
+    max-height: unset;
+}
+
+.small {
+    font-size: 0.85em;
+}
+
+.reveal .slides .title {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: -800px;
+    color: #fc739c;
+    background-color: #fff;
+    padding: 10px;
+    font-size: 1.25em;
+}
+
+.reveal .slides .subtitle {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: -880px;
+    color: #fc739c;
+    font-weight: bold;
+    background-color: #fff;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.reveal .slides .author {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: -830px;
+    color: $fontcolor;
+    font-weight: bold;
+}
+
+.reveal .slides .institute {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: -875px;
+    color: $fontcolor;
+    font-weight: bold;
+}
+
+.reveal .slide .in-out {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 1em;
+    background: #E8E8E8;
+    font-family: $font-family-monospace;
+    font-size: 0.6em;
+}
+
+
+.reveal .slide .goal {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 1em;
+    background: #ccddeb;
+}
+
+ul,
+ol,
+dl ul,
+ol,
+dl {
+    font-size: 85%;
+}
+
+@font-face {
+    font-family: 'Derailed';
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/derailed-regular-webfont.woff2") format('woff2'),
+        url("fonts/derailed-regular-webfont.woff") format('woff');
+}
+
+.reveal .slides .footnote {
+    font-size: 0.4em;
+    color: $fontcolor;
+    font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-top: 1px solid $fontcolor;
+    width: 50%;
+}
